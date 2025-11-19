@@ -5,30 +5,30 @@ import User from '../models/user.js'
 const loginRouter = express.Router()
 
 loginRouter.get("/", (request, response) => {
-    response.render('frontpage', {title: 'Frontpage'})
+    response.render('loginpage', { title: 'Login' })
 })
 
 loginRouter.post("/", async (request, response) => {
-    let {username, password} = request.body
+    let { username, password } = request.body
 
     const users = await loadUsers()
 
     const user = users.filter(user => user.username === username && user.password === password)
 
-    if(user){
+    if (user) {
         request.session.username = username
-        response.redirect("/")
-    } else{
-        response.status(401).send("Username or password is incorrect!")
+        response.sendStatus(200)
+    } else {
+        response.sendStatus(404)
     }
 })
 
-async function loadUsers(){
+async function loadUsers() {
     const data = await fs.readFile("./users.json", 'utf-8')
     const usersJson = JSON.parse(data)
     const usersArray = usersJson.users
 
-    const users = usersArray.map(user => 
+    const users = usersArray.map(user =>
         new User(
             user.id,
             user.username,
