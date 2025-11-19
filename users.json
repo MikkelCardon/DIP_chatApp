@@ -4,9 +4,16 @@
         {
             "id":"-1",
             "username": "admin",
-            "password": "password",
+            "password": "a",
             "dateOfCreation": "19/11/2025",
             "userLevel": 3
+        },
+        {
+            "id":"2",
+            "username": "noob",
+            "password": "password",
+            "dateOfCreation": "19/11/2025",
+            "userLevel": 1
         }
     ]
 }

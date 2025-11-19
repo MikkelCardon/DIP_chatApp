@@ -1,5 +1,5 @@
 
-export class Message {
+export default class Message {
     static #globalIdentification = 1
 
     constructor (id, createdByUser, dateOfCreation, postedToChat, text) {

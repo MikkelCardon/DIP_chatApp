@@ -13,17 +13,25 @@ loginRouter.post("/", async (request, response) => {
 
     const users = await loadUsers()
 
-    const user = users.filter(user => user.username === username && user.password === password)
+    const user = users.filter(user => user.username === username && user.password === password)[0]
+
+    console.log(user);
+    
 
     if (user) {
-        request.session.username = username
+        request.session.username = user.username
+        request.session.userLevel = user.userLevel 
+        request.session.userId = user.id
+
+        console.log(request.session);
+        
         response.sendStatus(200)
     } else {
         response.sendStatus(404)
     }
 })
 
-async function loadUsers() {
+export async function loadUsers() {
     const data = await fs.readFile("./users.json", 'utf-8')
     const usersJson = JSON.parse(data)
     const usersArray = usersJson.users
@@ -37,7 +45,6 @@ async function loadUsers() {
             user.userLevel
         )
     );
-    console.log(users);
     return users
 }
 

@@ -5,7 +5,6 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 import loginRouter from "./routes/loginRouter.js"
-import controllerRouter from "./routes/controllerRouter.js"
 
 //API
 import userRouter from "./routes/userRouter.js"
@@ -30,10 +29,8 @@ const __dirname = path.dirname(__filename);
 app.use("/login", loginRouter)
 
 const requireAuth = (request, response, next) => {
-  console.log("auth");
-  console.log(request.session.username);
+    console.log(request.session.username);
   if (request.session.username) {
-    console.log(`Triggered on ${request.session.username}`);
     next();
   } else {
     response.redirect('/login');
@@ -42,14 +39,22 @@ const requireAuth = (request, response, next) => {
 
 app.use(requireAuth)
 
-app.use("/home", controllerRouter)
-
 //API
-app.use("/chats", chatRouter)
-app.use("/users", userRouter)
+app.use("/api", (request, response, next) => {
+    let userLevel = request.session.userLevel
+
+    console.log("userLevel: ", userLevel);
+    
+    if(userLevel < 3){
+        response.status(401).send("[ERROR]: UserLevel is under level 3")
+    }
+    next()
+})
+
+app.use("/api/chats", chatRouter)
+app.use("/api/users", userRouter)
 
 app.get('/', (request, response)=>{
-    console.log("I was hit. ow");
     response.render('frontpage', {title: 'Frontpage'})
 })
 
