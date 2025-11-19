@@ -22,14 +22,10 @@ app.use(session({
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'))
-});
-
 app.use("/home", router)
 
-app.get('/pug', (request, response)=>{
-    response.render('frontpage', {title: 'FORSIDE'})
+app.get('/', (request, response)=>{
+    response.render('frontpage', {title: 'Frontpage'})
 })
 
 app.listen(PORT, () => {
