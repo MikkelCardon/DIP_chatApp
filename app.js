@@ -23,13 +23,16 @@ app.use(session({
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
     res.send('Hello')
 });
 
 app.use("/login", loginRouter)
 app.use("/home", userRouter)
 
+app.get('/', (request, response)=>{
+    response.render('frontpage', {title: 'Frontpage'})
+})
 
 app.listen(PORT, () => {
     console.log('SERVER IS RUNNING ON PORT', PORT);
