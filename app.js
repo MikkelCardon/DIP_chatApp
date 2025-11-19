@@ -22,6 +22,10 @@ app.use(session({
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+app.get('/api', (req, res) => {
+    res.send('Hello')
+});
+
 app.use("/home", router)
 
 app.get('/', (request, response)=>{
