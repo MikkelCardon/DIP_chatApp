@@ -1,3 +1,11 @@
 {
-    "users": []
+    "users": [
+        {
+            "id":"-1",
+            "username": "admin",
+            "password": "password",
+            "dateOfCreation": "19/11/2025",
+            "userLevel": 3
+        }
+    ]
 }

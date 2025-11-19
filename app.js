@@ -23,11 +23,22 @@ app.use(session({
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.get('/api', (req, res) => {
+app.get('/api', (request, response) => {
     res.send('Hello')
 });
 
 app.use("/login", loginRouter)
+
+const requireAuth = (request, response, next) => {
+  if (request.session.username) {
+    next();
+  } else {
+    response.redirect('/login');
+  }
+};
+
+app.use(requireAuth)
+
 app.use("/home", userRouter)
 
 app.get('/', (request, response)=>{
