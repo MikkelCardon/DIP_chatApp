@@ -55,7 +55,7 @@ app.use("/api/chats", chatRouter)
 app.use("/api/users", userRouter)
 
 app.get('/', (request, response)=>{
-    response.render('frontpage', {title: 'Frontpage'})
+    response.render('homePage', {title: 'HomePage'})
 })
 
 app.listen(PORT, () => {

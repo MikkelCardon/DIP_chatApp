@@ -5,7 +5,7 @@ import User from '../models/user.js'
 const loginRouter = express.Router()
 
 loginRouter.get("/", (request, response) => {
-    response.render('loginpage', { title: 'Login' })
+    response.render('logInUserPage', { title: 'Login' })
 })
 
 loginRouter.post("/", async (request, response) => {
