@@ -30,7 +30,10 @@ const __dirname = path.dirname(__filename);
 app.use("/login", loginRouter)
 
 const requireAuth = (request, response, next) => {
+  console.log("auth");
+  console.log(request.session.username);
   if (request.session.username) {
+    console.log(`Triggered on ${request.session.username}`);
     next();
   } else {
     response.redirect('/login');
@@ -46,6 +49,7 @@ app.use("/chats", chatRouter)
 app.use("/users", userRouter)
 
 app.get('/', (request, response)=>{
+    console.log("I was hit. ow");
     response.render('frontpage', {title: 'Frontpage'})
 })
 
