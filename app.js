@@ -4,8 +4,12 @@ import morgan from 'morgan';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-import userRouter from "./routes/userRouter.js"
 import loginRouter from "./routes/loginRouter.js"
+import controllerRouter from "./routes/controllerRouter.js"
+
+//API
+import userRouter from "./routes/userRouter.js"
+import chatRouter from "./routes/chatRouter.js"
 
 const app = express();
 const PORT = 8080;
@@ -23,10 +27,6 @@ app.use(session({
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.get('/api', (request, response) => {
-    res.send('Hello')
-});
-
 app.use("/login", loginRouter)
 
 const requireAuth = (request, response, next) => {
@@ -39,7 +39,11 @@ const requireAuth = (request, response, next) => {
 
 app.use(requireAuth)
 
-app.use("/home", userRouter)
+app.use("/home", controllerRouter)
+
+//API
+app.use("/chats", chatRouter)
+app.use("/users", userRouter)
 
 app.get('/', (request, response)=>{
     response.render('frontpage', {title: 'Frontpage'})
