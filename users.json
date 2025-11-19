@@ -2,14 +2,14 @@
     "users": 
     [
         {
-            "id":"-1",
+            "id": -1,
             "username": "admin",
             "password": "a",
             "dateOfCreation": "19/11/2025",
             "userLevel": 3
         },
         {
-            "id":"2",
+            "id": 2,
             "username": "noob",
             "password": "password",
             "dateOfCreation": "19/11/2025",

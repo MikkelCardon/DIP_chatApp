@@ -1,10 +1,8 @@
 import express from "express"
-import fs from 'fs/promises'
 
-import {loadUsers} from './loginRouter.js'
+import {loadUsers, loadChats, loadMessages} from '../services/fileReaders.js'
 
-import Chat from '../models/chat.js'
-import Message from '../models/message.js'
+
 
 const userRouter = express.Router()
 
@@ -15,11 +13,11 @@ userRouter.get("/", async (request, response) => {
 })
 
 userRouter.get("/:id", async (request, response) => {
-    const id = request.params.id
+    const id = parseInt(request.params.id)
     const users = await loadUsers()
 
-    const user = users.filter(user => user.id === id)
-    response.send(user)
+    const filteredUser = users.find(user => user.id === id)
+    response.json(filteredUser)
 })
 
 userRouter.get("/:id/messages", async (request, response) => {
@@ -28,56 +26,10 @@ userRouter.get("/:id/messages", async (request, response) => {
     const chats = await loadChats()
     const messages = await loadMessages(chats)    
 
-    const filteredMessages = messages.filter(message => message.createdByUser === userId)
+    //Uses filter because we want to find all messages by a user
+    const filteredMessages = messages.filter(message => message.createdByUser === userId) 
 
-    response.send(filteredMessages)
+    response.json(filteredMessages)
 })
-
-
-export async function loadChats() {
-    const data = await fs.readFile("./chats.json", 'utf-8')
-    const chatJson = JSON.parse(data)
-    const chatArray = chatJson.chats    
-
-    const chats = chatArray.map(chat =>{
-        const messages = []
-
-        chat.messages.forEach(message => {
-            messages.push(new Message(
-                message.id,
-                message.createdByUser,
-                message.dateOfCreation,
-                message.postedToChat,
-                message.text
-            ))
-        })
-
-        return new Chat(
-            chat.id,
-            chat.name,
-            chat.dateOfCreation,
-            chat.createdByUser,
-            messages
-        )
-    }
-    );
-    return chats
-}
-
-
-export async function loadMessages(chats) {
-    const messages = []    
-
-    chats.forEach(chat => {
-        chat.messages.forEach(message =>{
-            messages.push(message)
-        })
-    });
-
-    return messages
-}
-
-
-
 
 export default userRouter
