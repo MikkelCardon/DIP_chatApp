@@ -4,7 +4,8 @@ import morgan from 'morgan';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-import router from "./routes/router.js"
+import userRouter from "./routes/userRouter.js"
+import loginRouter from "./routes/loginRouter.js"
 
 const app = express();
 const PORT = 8080;
@@ -26,11 +27,9 @@ app.get('/', (req, res) => {
     res.send('Hello')
 });
 
-app.use("/home", router)
+app.use("/login", loginRouter)
+app.use("/home", userRouter)
 
-app.get('/pug', (request, response)=>{
-    response.render('frontpage', {title: 'FORSIDE'})
-})
 
 app.listen(PORT, () => {
     console.log('SERVER IS RUNNING ON PORT', PORT);
