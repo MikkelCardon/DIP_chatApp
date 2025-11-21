@@ -2,7 +2,7 @@ import express from 'express'
 import { getChat } from '../services/fileReaders.js'
 import { createMessage } from '../services/messageCRUD.js'
 import { updateChats } from '../services/fileWriters.js'
-import { addMessageToChat, removeMessageFromChat } from '../services/chatCRUD.js' 
+import { addMessageToChat, removeChat, removeMessageFromChat } from '../services/chatCRUD.js' 
 
 const router = express.Router()
 
@@ -18,10 +18,11 @@ router.get('/:id', async (request, response) => {
     response.render('chatRoomPage', {
         title: `chats/${chat.name}`,
         chatName: chat.name,
+        createdByUser: parseInt(chat.createdByUser),
         messages: chat.messages,
-        userId: request.session.userId,
-        userLevel: request.session.userLevel,
-        chatId: chat.id
+        userId: parseInt(request.session.userId),
+        userLevel: parseInt(request.session.userLevel),
+        chatId: parseInt(chat.id)
     })
 })
 
@@ -35,6 +36,20 @@ router.post('/:id', async (request, response) => {
 
     if (!chats) {
         console.error(`chatRoomRouter.post('/:id',...) -> chats are ${typeof(chats)}`)
+        response.sendStatus(401)
+    }
+
+    await updateChats(chats)
+    response.sendStatus(201)
+})
+
+router.delete('/:id', async (request, response) => {
+    const chatId = parseInt(request.params.id)
+    
+    const chats = await removeChat(chatId)
+
+    if (!chats) {
+        console.error(`chatRoomRouter.delete('/:id',...) -> chats are ${typeof(chats)}`)
         response.sendStatus(401)
     }
 
