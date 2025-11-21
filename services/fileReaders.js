@@ -23,6 +23,12 @@ export async function loadUsers() {
     return users
 }
 
+export async function getUser (userId) {
+    const users = await loadUsers()
+    const user = users.find(currentUser => currentUser.id === userId)
+    return user
+}
+
 //CHATS
 export async function loadChats() {
     const data = await fs.readFile("./chats.json", 'utf-8')
@@ -54,7 +60,13 @@ export async function loadChats() {
     return chats
 }
 
+export async function getChat (chatId) {
+    const chats = await loadChats()
+    const chat = chats.find(currentChat => currentChat.id === chatId)
+    return chat
+}
 
+// MESSAGES
 export async function loadMessages(chats) {
     const messages = []    
 
