@@ -17,7 +17,8 @@ deleteMessageButtons.forEach(deleteButton => {
 
 async function messageToDelete (postedToChat, messageId) {
     const response = await fetch(`/chats/${postedToChat}/${messageId}`, {
-            method: 'DELETE'
+            method: 'DELETE',
+            credentials: "include"
         }
     )
     return response

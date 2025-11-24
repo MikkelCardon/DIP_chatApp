@@ -25,7 +25,7 @@ chatRouter.get("/:id/messages", async (request, response) => {
 
     const filteredChat = chats.filter(chat => chat.id === chatId)
 
-    const messages = await loadMessages(filteredChat)    
+    const messages = await loadMessages(filteredChat)        
 
     response.json(messages)
 })

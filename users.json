@@ -14,6 +14,13 @@
             "password": "password",
             "dateOfCreation": "19/11/2025",
             "userLevel": 1
+        },
+        {
+            "id": 1,
+            "username": "user",
+            "password": "p",
+            "dateOfCreation": "21/11/2025",
+            "userLevel": 2
         }
     ]
 }

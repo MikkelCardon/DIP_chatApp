@@ -11,7 +11,8 @@ deleteChatButton.addEventListener('click', async () => {
 
 async function chatToDelete (chatId) {
     const response = await fetch(`/chats/${chatId}`, {
-            method: 'DELETE'
+            method: 'DELETE',
+            credentials: "include"
         }
     )
     return response
