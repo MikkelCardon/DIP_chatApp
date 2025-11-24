@@ -5,6 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 import loginRouter from "./routes/loginRouter.js"
+import chatRoomRouter from './routes/chatRoomRouter.js'
 
 //API
 import userRouter from "./routes/userRouter.js"
@@ -29,15 +30,17 @@ const __dirname = path.dirname(__filename);
 app.use("/login", loginRouter)
 
 const requireAuth = (request, response, next) => {
-    console.log(request.session.username);
+  console.log(request.session.username);
   if (request.session.username) {
     next();
   } else {
-    response.redirect('/login');
+    response.redirect("/login");
   }
 };
 
 app.use(requireAuth)
+
+app.use('/chats', chatRoomRouter)
 
 //API
 app.use("/api", (request, response, next) => {

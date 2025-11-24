@@ -14,6 +14,7 @@ sendMessageButton.addEventListener('click', async () => {
 async function post (createdByUser, postedToChat, text) {
     const response = await fetch(`/chats/${postedToChat}`, {
             method: 'POST',
+            credentials: "include",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(
                 { 
