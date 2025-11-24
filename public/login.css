@@ -18,10 +18,7 @@ body {
 header {
     grid-area: header;
 
-    margin-top: 20%;
-    margin-right: 10%;
-    margin-bottom: 20%;
-    margin-left: 10%;
+    padding: 5% 10%; /* Adjust as needed */
 
     display: grid;
     grid-template-columns: auto;
