@@ -5,6 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 import loginRouter from "./routes/loginRouter.js"
+import frontpageRouter from "./routes/frontpageRouter.js"
 import chatRoomRouter from './routes/chatRoomRouter.js'
 
 //API
@@ -40,6 +41,8 @@ const requireAuth = (request, response, next) => {
 
 app.use(requireAuth)
 
+app.use('/', frontpageRouter)
+
 app.use('/chats', chatRoomRouter)
 
 //API
@@ -56,10 +59,6 @@ app.use("/api", (request, response, next) => {
 
 app.use("/api/chats", chatRouterAPI)
 app.use("/api/users", userRouterAPI)
-
-app.get('/', (request, response)=>{
-    response.render('homePage', {title: 'HomePage'})
-})
 
 app.listen(PORT, () => {
     console.log('SERVER IS RUNNING ON PORT', PORT);

@@ -1,6 +1,10 @@
 import Chat from '../models/chat.js'
 import { loadChats, loadMessages } from './fileReaders.js'
 
+export async function createChat (name, createdByUser) {
+    const chat = new Chat(null, name, Date.now, createdByUser, [])
+    return chat
+}
 
 export async function removeChat (chatId) {
     const chats = await loadChats()
