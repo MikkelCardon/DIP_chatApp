@@ -8,8 +8,8 @@ import loginRouter from "./routes/loginRouter.js"
 import chatRoomRouter from './routes/chatRoomRouter.js'
 
 //API
-import userRouter from "./routes/userRouter.js"
-import chatRouter from "./routes/chatRouter.js"
+import userRouterAPI from "./routes/api/userRouterAPI.js"
+import chatRouterAPI from "./routes/api/chatRouterAPI.js"
 
 const app = express();
 const PORT = 8080;
@@ -54,8 +54,8 @@ app.use("/api", (request, response, next) => {
     next()
 })
 
-app.use("/api/chats", chatRouter)
-app.use("/api/users", userRouter)
+app.use("/api/chats", chatRouterAPI)
+app.use("/api/users", userRouterAPI)
 
 app.get('/', (request, response)=>{
     response.render('homePage', {title: 'HomePage'})

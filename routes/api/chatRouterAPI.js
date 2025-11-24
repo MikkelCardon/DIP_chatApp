@@ -1,6 +1,6 @@
 import express from "express"
 
-import {loadUsers, loadChats, loadMessages} from '../services/fileReaders.js'
+import {loadUsers, loadChats, loadMessages} from '../../services/fileReaders.js'
 
 const chatRouter = express.Router()
 
