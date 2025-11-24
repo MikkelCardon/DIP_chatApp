@@ -5,7 +5,7 @@ import {loadUsers} from '../services/fileReaders.js'
 const loginRouter = express.Router()
 
 loginRouter.get("/", (request, response) => {
-    response.render('logInUserPage', { title: 'Login' })
+    response.render('logInUserPage', { title: '(new) facebook by Jin Yang' })
 })
 
 loginRouter.post("/", async (request, response) => {
