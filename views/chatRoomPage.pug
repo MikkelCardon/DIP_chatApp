@@ -4,6 +4,20 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title= title 
+        script(src="/js/deleteMessage.js" defer)
+        script(src="/js/sendMessage.js" defer) 
     body 
 
-    
+    header 
+        p= chatName
+
+    #chatThreadSection
+        each message in messages
+            if message.createdByUser === userId
+                include includes/sendMessageElement
+            else
+                include includes/receivedMessageElement
+
+    #createMessageSection
+        input#messageInputElement(type="text", name="messageInput", data-userId= userId, data-chatId= chatId)
+        button#sendMessageButton(type="button") send
