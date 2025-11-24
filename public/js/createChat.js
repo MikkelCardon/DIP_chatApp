@@ -6,7 +6,7 @@ createChatButton.addEventListener('click', async () => {
     const chatName = chatNameInput.value
     
     const response = await post(chatName)
-    const data = response.json()
+    const data = await response.json()
     const chatId = parseInt(data.chatId)
     console.log(`chatId: ${chatId}`)
 
