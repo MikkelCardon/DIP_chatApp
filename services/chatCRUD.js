@@ -3,7 +3,7 @@ import { loadChats, loadMessages } from './fileReaders.js'
 
 export function createChat (name, createdByUser) {
     console.log(name, createdByUser);
-    const chat = new Chat(null, name, Date.now().toLocaleString(), createdByUser, [])
+    const chat = new Chat(null, name, new Date().toLocaleDateString('en-GB'), createdByUser, [])
     return chat
 }
 
