@@ -6,9 +6,11 @@ sendMessageButton.addEventListener('click', async () => {
     const postedToChat = messageInputElement.getAttribute('data-chatId')
     const text = messageInputElement.value
 
-    const status = await post(createdByUser, postedToChat, text)
+    if (text.length > 0) {
+        const status = await post(createdByUser, postedToChat, text)
 
-    window.location.href = `/chats/${postedToChat}`
+        window.location.href = `/chats/${postedToChat}`
+    }
 })
 
 async function post (createdByUser, postedToChat, text) {
