@@ -5,19 +5,23 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title= title 
         script(src="/js/deleteMessage.js" defer)
+        script(src="/js/deleteChat.js" defer)
         script(src="/js/sendMessage.js" defer) 
     body 
 
     header 
         p= chatName
+        if createdByUser == userId
+            button#deleteChatButton(data-userId= userId, data-chatId= chatId) Delete Chat
 
     #chatThreadSection
         each message in messages
-            if message.createdByUser === userId
+            if message.createdByUser == userId
                 include includes/sendMessageElement
             else
                 include includes/receivedMessageElement
 
-    #createMessageSection
-        input#messageInputElement(type="text", name="messageInput", data-userId= userId, data-chatId= chatId)
-        button#sendMessageButton(type="button") send
+    if userLevel > 1
+        #createMessageSection
+            input#messageInputElement(type="text", name="messageInput", data-userId= userId, data-chatId= chatId)
+            button#sendMessageButton(type="button") send
