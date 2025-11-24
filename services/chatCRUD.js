@@ -34,3 +34,11 @@ export async function removeMessageFromChat (chatId, messageId) {
     return chats
 }
 
+export async function updateChatName (chatId, updatedChatName) {
+    const chats = await loadChats()
+
+    const chat = chats.find(currentChat => currentChat.id === chatId)
+    chat.name = updatedChatName
+
+    return chats
+}

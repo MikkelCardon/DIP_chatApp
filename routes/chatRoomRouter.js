@@ -2,7 +2,7 @@ import express from 'express'
 import { getChat } from '../services/fileReaders.js'
 import { createMessage } from '../services/messageCRUD.js'
 import { updateChats } from '../services/fileWriters.js'
-import { addMessageToChat, removeChat, removeMessageFromChat } from '../services/chatCRUD.js' 
+import { addMessageToChat, removeChat, removeMessageFromChat, updateChatName } from '../services/chatCRUD.js' 
 
 const router = express.Router()
 
@@ -65,6 +65,19 @@ router.delete('/:id/:messageid', async (request, response) => {
 
     if (!chats) {
         console.error(`chatRoomRouter.delete('/:id/:messageid',...) -> chats are ${typeof(chats)}`)
+        response.sendStatus(401)
+    }
+
+    await updateChats(chats)
+    response.sendStatus(201)
+})
+
+router.put('/:id', async (request, response) => {
+    const chatId = parseInt(request.params.id)
+    const { updatedChatName } = request.body
+
+    const chats = await updateChatName(chatId, updatedChatName)
+    if (!chats) {
         response.sendStatus(401)
     }
 
