@@ -20,7 +20,7 @@ async function post (name) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(
                 { 
-                    name: name
+                    name: name,
                 }
             )
         }
