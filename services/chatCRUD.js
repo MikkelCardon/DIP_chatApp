@@ -1,6 +1,8 @@
 import Chat from '../models/chat.js'
-import { loadChats, loadMessages } from './fileReaders.js'
+import Message from '../models/message.js'
+import { loadChats } from './fileReaders.js'
 
+// CHAT CRUD
 export async function createChat (name, createdByUser) {
     const chat = new Chat(null, name, Date.now, createdByUser, [])
     return chat
@@ -15,6 +17,12 @@ export async function removeChat (chatId) {
     chats.splice(index, 1)
     
     return chats
+}
+
+// MESSAGE CRUD
+export function createMessage (id, createdByUser, dateOfCreation, postedToChat, text) {
+    const user = new Message (id, createdByUser, dateOfCreation, postedToChat, text) 
+    return user
 }
 
 export async function addMessageToChat (chatId, message) {
