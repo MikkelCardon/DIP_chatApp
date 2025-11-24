@@ -5,9 +5,12 @@ export default class Chat {
 
     constructor (id, name, dateOfCreation, createdByUser, messages) {
         if (id == null) {
-            this.id = Chat.#globalIdentification++
+            this.id = Chat.#globalIdentification++ 
         } else {
             this.id = id
+            if (this.id >= Chat.#globalIdentification){
+                Chat.#globalIdentification = this.id + 1
+            }
         }
         this.name = name
         this.dateOfCreation = dateOfCreation

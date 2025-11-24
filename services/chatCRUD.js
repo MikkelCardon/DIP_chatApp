@@ -2,9 +2,9 @@ import Chat from '../models/chat.js'
 import Message from '../models/message.js'
 import { loadChats } from './fileReaders.js'
 
-// CHAT CRUD
-export async function createChat (name, createdByUser) {
-    const chat = new Chat(null, name, Date.now, createdByUser, [])
+export function createChat (name, createdByUser) {
+    console.log(name, createdByUser);
+    const chat = new Chat(null, name, new Date().toLocaleDateString('en-GB'), createdByUser, [])
     return chat
 }
 
