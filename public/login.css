@@ -18,7 +18,12 @@ body {
 header {
     grid-area: header;
 
-    padding: 5% 10%; /* Adjust as needed */
+    height: 50%;
+
+    padding-left: 5%;
+    padding-top: 10%;
+    padding-right: 5%;
+    padding-bottom: 5%;
 
     display: grid;
     grid-template-columns: auto;
@@ -44,6 +49,8 @@ header {
 #titleHeader {
     grid: title;
 
+    margin-bottom: 0;
+
     font-size: 46px;
     font-weight: bolder;
     color: rgb(3, 121, 218);
@@ -51,6 +58,8 @@ header {
 
 #subtext {
     grid: subtext;
+
+    margin-top: 0;
 
     font-size: 26px;
     font-weight: 900px;
