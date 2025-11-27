@@ -1,7 +1,7 @@
 
 
-export async function updateChat(newName, chatid) {
-    const status = await put(chatId, updatedChatName) 
+export async function updateChat(newName, chatId) {
+    const status = await put(chatId, newName) 
     return status
 }
 
