@@ -3,14 +3,40 @@ html(lang="en")
     head
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title= title 
-        script(src="/js/updateChat.js" defer)
-        script(src="/js/deleteMessage.js" defer)
-        script(src="/js/deleteChat.js" defer)
-        script(src="/js/sendMessage.js" defer) 
+        title= title  
+        script(type="module", src="/js/chatroom.js" defer) 
+        link(rel="stylesheet", href="/chat.css")
+        link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=delete")
     body 
 
-    header 
+    div(class="chat-section")
+        div(class="chat-header", id="chatHeader")
+            div(id="chatId" data-chatId= chatId)= chatName 
+
+            if createdByUser == userId || userLevel === 3
+            span(class="material-symbols-outlined", id="deleteButton") delete
+        
+        div(class="message-section")
+            each message in messages 
+                if message.createdByUser == userId 
+                    div(class="message message-sent")
+                        p= message.createdByUser 
+                        p= message.text
+
+                else 
+                    div(class="message message-received")
+                        p= message.createdByUser 
+                        p= message.text
+
+
+        if userLevel > 1                  
+            div(class="input-section")
+                input(id="msg")
+                button send
+
+
+
+//
         if createdByUser == userId || userLevel === 3
             input#chatNameLabel(type="text", value= chatName)
             button#deleteChatButton(data-userId= userId, data-chatId= chatId) delete chat
@@ -29,3 +55,4 @@ html(lang="en")
         #createMessageSection
             input#messageInputElement(type="text", name="messageInput", data-userId= userId, data-chatId= chatId)
             button#sendMessageButton(type="button") send message
+ 
