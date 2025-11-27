@@ -1,15 +1,9 @@
-const updateChatButton = document.getElementById("updateChatButton")
 
-updateChatButton.addEventListener('click', async () => {
-    const chatNameLabel = document.getElementById('chatNameLabel')
-    const updatedChatName = chatNameLabel.value    
 
-    const chatId = updateChatButton.getAttribute('data-chatId')
-
+export async function updateChat(newName, chatid) {
     const status = await put(chatId, updatedChatName) 
-
-    window.location.href = `/chats/${chatId}`
-})
+    return status
+}
 
 async function put (chatId, updatedChatName) {
     const response = await fetch(`/chats/${chatId}`, 
