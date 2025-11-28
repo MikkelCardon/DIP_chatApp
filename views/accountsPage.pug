@@ -19,6 +19,14 @@ html(lang="en")
                 button#registerUserButton Register
 
             each user in users 
-                include includes/userOverview
+                .usersOverview 
+                    label Username: #{user.username}
+                    label Password: #{user.password}
+                    label Created: #{user.dateOfCreation}
+                    label User level: #{user.userLevel}
         else 
-            include includes/userOverview
+            .usersOverview 
+                label Username: #{accessedUser.username}
+                label Password: #{accessedUser.password}
+                label Created: #{accessedUser.dateOfCreation}
+                label User level: #{accessedUser.userLevel}
