@@ -1,5 +1,7 @@
 import express from 'express'
 import { loadUsers } from '../services/fileReaders.js'
+import { createUser, deleteUser } from '../services/userCRUD.js'
+import { updateUsers } from '../services/fileWriters.js'
 
 const router = express.Router()
 
@@ -12,6 +14,38 @@ router.get('/', async (request, response) => {
         accessedUser: user,
         users: users
     })
+})
+
+router.post('/', async (request, response) => {
+    const { username, password, userLevel } = request.body
+
+    const user = createUser(username, password, userLevel)
+
+    try {
+        const users = await loadUsers()
+        users.push(user)
+        await updateUsers(users)
+    } catch (error) {
+        console.error(`router.post('/',...): ${error.message}`)
+        response.sendStatus(401)
+    }
+
+    response.sendStatus(201)
+})
+
+router.delete('/', async (request, response) => {
+    const { userId } = request.body
+    console.log('================================userId:' + userId + '=========================================');
+
+    try {
+        const updatedUsers = await deleteUser(parseInt(userId))
+        await updateUsers(updatedUsers)
+    } catch (error) {
+        console.error(`router.delete('/',...): ${error.message}`)
+        response.sendStatus(401)
+    }
+
+    response.sendStatus(201)
 })
 
 export default router

@@ -4,9 +4,12 @@ export default class User {
 
     constructor (id, username, password, dateOfCreation, userLevel) {
         if (id == null) {
-            this.id = User.#globalIdentification++
+            this.id = User.#globalIdentification++ 
         } else {
             this.id = id
+            if (this.id >= User.#globalIdentification){
+                User.#globalIdentification = this.id + 1
+            }
         }
         this.username = username
         this.password = password

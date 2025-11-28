@@ -2,11 +2,7 @@
 const navigationButtonsList = document.querySelectorAll("#navigationButtonsList > li")
 
 navigationButtonsList.forEach(async listElement => {
-    console.log(`Listelement: ${listElement}`)
-
     const navigationButton = listElement.firstElementChild
-    console.log(`navigationButton: ${navigationButton}`)
-    console.log(`navigationButton Id: ${navigationButton.id}`)
 
     switch (navigationButton.id) {
         case "homeNavigationButton":

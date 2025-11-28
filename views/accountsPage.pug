@@ -5,6 +5,8 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         link(rel="stylesheet", href="/css/navigationbar.css")
         script(src="/js/navigationbar.js" defer) 
+        script(src="/js/createUser.js" defer) 
+        script(src="/js/deleteUser.js" defer) 
         title= title 
     body 
         include includes/navigationbar 
@@ -25,6 +27,8 @@ html(lang="en")
                     label Password: #{user.password}
                     label Created: #{user.dateOfCreation}
                     label User level: #{user.userLevel}
+                    if accessedUser.id != user.id
+                        button.deleteUserButton(data-userId= user.id) Delete
         else 
             .usersOverview 
                 label Username: #{accessedUser.username}
