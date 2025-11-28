@@ -1,0 +1,127 @@
+/* This is a temporary css file - should be combined with style.css */
+body {
+    overflow: hidden; /* Disables horizontal and vertical scroll*/
+}
+
+#mainContainer {
+    height: 100vh;
+    background-color: rgb(242, 243, 243);
+    
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto 25%;
+    grid-template-areas:
+    "header"
+    "footer";
+}
+
+header {
+    grid-area: header;
+
+    height: 50%;
+
+    padding-left: 5%;
+    padding-top: 10%;
+    padding-right: 5%;
+    padding-bottom: 5%;
+
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-template-areas:
+    "title logInSection"
+}
+
+
+/* HEADER*/ 
+#siteTitleSection {
+    grid-area: title;
+    margin-right: 5%;
+
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+    "title"
+    "subtext";
+}
+
+#titleHeader {
+    grid: title;
+
+    margin-bottom: 0;
+
+    font-size: 46px;
+    font-weight: bolder;
+    color: rgb(3, 121, 218);
+}
+
+#subtext {
+    grid: subtext;
+
+    margin-top: 0;
+
+    font-size: 26px;
+    font-weight: 900px;
+    color:rgb(85, 85, 85)y;
+}
+
+
+/* LOGIN SECTION */
+#logInUserSection {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+
+    grid-area: logInSection;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 
+    "usernameInput"
+    "passwordInput"
+    "loginButton";
+}
+
+.loginElement {
+    height: 40px;
+    border-radius: 5px;
+}
+
+#usernameInputElement {
+    grid-area: usernameInput;
+    margin-top: 25px;
+    font-size: 15px;
+}
+
+#passwordInputElement {
+    grid-area: passwordInput;
+    font-size: 15px;
+}
+
+#loginButton {
+    grid-area: loginButton;
+    margin-bottom: 10px;
+
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    background-color: rgb(3, 121, 218);
+}
+
+
+/* FOOTER */
+footer {
+    grid-area: footer;
+    background-color: blanchedalmond;
+
+    display: grid;
+    grid-template-columns: 5% auto 10%;
+    grid-template-rows: auto;
+    grid-template-areas:
+    ". additionalInformation .";
+}
+
+#additionalInformation {
+    grid-area: additionalInformation;
+}

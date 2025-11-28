@@ -1,0 +1,32 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        script(src="/js/navigationbar.js" defer) 
+        title= title 
+    body 
+        include includes/navigationbar 
+
+        h1 Account Overview
+        
+        if accessedUser.userLevel == 3
+            #registerUserSection
+                input(type="text", name="username", id="usernameInput", placeholder="Username")
+                input(type="password", name="password", id="passwordInput", placeholder="Password")
+                label(for="userLevel") User Level
+                    input(type="number", name="userLevel", id="userLevelInput", placeholder="1-3")
+                button#registerUserButton Register
+
+            each user in users 
+                .usersOverview 
+                    label Username: #{user.username}
+                    label Password: #{user.password}
+                    label Created: #{user.dateOfCreation}
+                    label User level: #{user.userLevel}
+        else 
+            .usersOverview 
+                label Username: #{accessedUser.username}
+                label Password: #{accessedUser.password}
+                label Created: #{accessedUser.dateOfCreation}
+                label User level: #{accessedUser.userLevel}

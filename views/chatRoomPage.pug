@@ -51,15 +51,22 @@ html(lang="en")
         else 
             p= chatName
 
-    #chatThreadSection
-        each message in messages
-            if message.createdByUser == userId
-                include includes/sendMessageElement
-            else
-                include includes/receivedMessageElement
+        header 
+            if createdByUser == userId || userLevel === 3
+                input#chatNameLabel(type="text", value= chatName)
+                button#deleteChatButton(data-userId= userId, data-chatId= chatId) delete chat
+                button#updateChatButton(date-userId= userId, data-chatId= chatId) update chat
+            else 
+                p= chatName
 
-    if userLevel > 1
-        #createMessageSection
-            input#messageInputElement(type="text", name="messageInput", data-userId= userId, data-chatId= chatId)
-            button#sendMessageButton(type="button") send message
- 
+        #chatThreadSection
+            each message in messages
+                if message.createdByUser == userId
+                    include includes/sendMessageElement
+                else
+                    include includes/receivedMessageElement
+
+        if userLevel > 1
+            #createMessageSection
+                input#messageInputElement(type="text", name="messageInput", data-userId= userId, data-chatId= chatId)
+                button#sendMessageButton(type="button") send message

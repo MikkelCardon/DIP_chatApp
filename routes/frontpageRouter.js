@@ -17,7 +17,7 @@ router.get('/', async (request, response) => {
         {
             title: 'HomePage',
             userLevel: request.session.userLevel,
-            chats: chats
+            chats: chats,
         }
     )
 })
@@ -40,6 +40,11 @@ router.post('/createchat', async (request, response) => {
     }
     
     response.json({chatId : chat.id})
+})
+
+router.get('/logout', (request, response) => {
+  request.session.destroy
+  response.redirect('/login')
 })
 
 export default router;
