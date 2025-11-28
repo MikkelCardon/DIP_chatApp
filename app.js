@@ -7,6 +7,7 @@ import { fileURLToPath } from 'url';
 import loginRouter from "./routes/loginRouter.js"
 import frontpageRouter from "./routes/frontpageRouter.js"
 import chatRoomRouter from './routes/chatRoomRouter.js'
+import accountsPageRouter from './routes/accountPageRouter.js'
 
 //API
 import userRouterAPI from "./routes/api/userRouterAPI.js"
@@ -42,6 +43,8 @@ const requireAuth = (request, response, next) => {
 app.use(requireAuth)
 
 app.use('/', frontpageRouter)
+
+app.use('/accounts', accountsPageRouter)
 
 app.use('/chats', chatRoomRouter)
 

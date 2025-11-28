@@ -42,4 +42,9 @@ router.post('/createchat', async (request, response) => {
     response.json({chatId : chat.id})
 })
 
+router.get('/logout', (request, response) => {
+  request.session.destroy
+  response.redirect('/login')
+})
+
 export default router;
