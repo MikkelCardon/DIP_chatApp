@@ -5,9 +5,12 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title= title  
         script(type="module", src="/js/chatroom.js" defer) 
-        link(rel="stylesheet", href="/chat.css")
+        link(rel="stylesheet", href="/css/navigationbar.css")
+        link(rel="stylesheet", href="/css/chat.css")
         link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=delete")
     body 
+
+    include includes/navigationbar
 
     div(class="chat-section")
         div(class="chat-header", id="chatHeader")

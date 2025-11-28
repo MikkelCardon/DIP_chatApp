@@ -2,25 +2,25 @@
     "users": 
     [
         {
-            "id": -1,
+            "id": 1,
             "username": "admin",
-            "password": "a",
+            "password": "p",
             "dateOfCreation": "19/11/2025",
             "userLevel": 3
         },
         {
             "id": 2,
-            "username": "noob",
-            "password": "password",
-            "dateOfCreation": "19/11/2025",
-            "userLevel": 1
-        },
-        {
-            "id": 1,
-            "username": "user",
+            "username": "user2",
             "password": "p",
             "dateOfCreation": "21/11/2025",
             "userLevel": 2
+        },
+        {
+            "id": 3,
+            "username": "user1",
+            "password": "p",
+            "dateOfCreation": "19/11/2025",
+            "userLevel": 1
         }
     ]
 }
