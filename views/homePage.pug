@@ -3,9 +3,11 @@ html(lang="en")
     head
         meta(charset="UTF-8")
         script(src="/js/createChat.js" defer) 
-        link(rel="stylesheet", href="/css/homepage.css")
+        script(src="/js/navigationbar.js" defer) 
         title= title 
     body 
+        include includes/navigationbar
+        
         #homePageContainer
             #chatHeader
                 h1#chatTitle Welcome to the Chat
