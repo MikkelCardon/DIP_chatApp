@@ -11,12 +11,13 @@ loginRouter.get("/", (request, response) => {
 loginRouter.post("/", async (request, response) => {
     let { username, password } = request.body
 
+    if (!username || !password) {
+        response.sendStatus(404)
+    }
+
     const users = await loadUsers()
 
-    const user = users.filter(user => user.username === username && user.password === password)[0]
-
-    console.log(user);
-    
+    const user = users.find(user => user.username === username && user.password === password)
 
     if (user) {
         request.session.username = user.username
