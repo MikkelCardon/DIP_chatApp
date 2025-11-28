@@ -13,14 +13,15 @@ html(lang="en")
             #chatHeader
                 h1#chatTitle Welcome to the Chat
 
+if userLevel >= 2
+    #createChatSection 
+        input#chatNameInput(type="text", placeholder="What is your chat name?")
+        button#createChatButton Create chat
             #availableChats
                 #availableChatsLabel All chats 
                 each chat in chats
                     .availableChatElement
                         a(href=`/chats/${chat.id}`) #{chat.name}
         
-            if userLevel === 3
-                #createChatSection
-                    input#chatNameInput(type="text", placeholder="What is your chat name?")
-                    button#createChatButton Create chat 
+            
 

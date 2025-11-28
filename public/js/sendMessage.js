@@ -1,17 +1,9 @@
-const sendMessageButton = document.getElementById('sendMessageButton')
+export async function sendMessage(createdByUser, postedToChat, text){
+    if (text.length <= 0) alert("Message can't be empty")
 
-sendMessageButton.addEventListener('click', async () => {
-    const messageInputElement = document.getElementById('messageInputElement')
-    const createdByUser = messageInputElement.getAttribute('data-userId')
-    const postedToChat = messageInputElement.getAttribute('data-chatId')
-    const text = messageInputElement.value
-
-    if (text.length > 0) {
-        const status = await post(createdByUser, postedToChat, text)
-
-        window.location.href = `/chats/${postedToChat}`
-    }
-})
+    const response = await post(createdByUser, postedToChat, text)
+    return response
+}
 
 async function post (createdByUser, postedToChat, text) {
     const response = await fetch(`/chats/${postedToChat}`, {
