@@ -1,6 +1,6 @@
 const loginButton = document.getElementById('loginButton')
-const usernameInput = document.getElementById('usernameInput')
-const passwordInput = document.getElementById('passwordInput')
+const usernameInput = document.getElementById('usernameInputElement')
+const passwordInput = document.getElementById('passwordInputElement')
 
 
 loginButton.addEventListener('click', async () => {
