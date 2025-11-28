@@ -64,7 +64,9 @@
     font-size: 15px;
 
     display: inline-flex;     
-    flex-direction: column;     
+    flex-direction: column;  
+    position: relative;   
+    min-width: 100px;
 }
 
 .input-section{
@@ -90,13 +92,11 @@
 /* Sent messages aligned to right */
 .message-sent {
     background-color: #d1f8ff;
-    align-self: flex-end;
 }
 
 /* Received messages aligned to left */
 .message-received {
     background-color: #e1ffc7;
-    align-self: flex-start;
 }
 
 .sender-name {
@@ -108,4 +108,42 @@
 
 .message-text {
     font-size: 15px;
+}
+
+.deleteRight{
+    position: absolute;
+    right: -30px;
+    top: 30%;
+}
+
+.deleteLeft{
+    position: absolute;
+    left: -30px;
+    top: 30%;
+}
+
+.deleteMessage{
+    opacity: 0;
+}
+
+.wrapper{
+    position: relative;
+    display: inline-flex;
+}
+
+
+
+.wrapper.sent {
+    justify-content: flex-end; /* optional */
+    align-self: flex-end;      /* push to right */
+}
+
+.wrapper.received {
+    justify-content: flex-start; /* optional */
+    align-self: flex-start;      /* push to left */
+}
+
+
+.wrapper:hover .deleteMessage {
+    opacity: 100;
 }

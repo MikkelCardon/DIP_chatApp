@@ -11,22 +11,29 @@ html(lang="en")
 
     div(class="chat-section")
         div(class="chat-header", id="chatHeader")
-            div(id="chatId" data-chatId= chatId)= chatName 
+            div(id="chatId", data-chatId= chatId, data-userLevel= userLevel, data-createdByUser= createdByUser, data-userId= userId)= chatName 
 
             if createdByUser == userId || userLevel === 3
-            span(class="material-symbols-outlined", id="deleteButton") delete
+                span(class="material-symbols-outlined", id="deleteButton") delete
         
         div(class="message-section")
             each message in messages 
-                if message.createdByUser == userId 
-                    div(class="message message-sent")
-                        p= message.createdByUser 
-                        p= message.text
+                    if message.createdByUser == userId 
+                        .wrapper.sent
+                            div(class="message message-sent")
+                                p= message.createdByUser 
+                                p= message.text
+                                if(userLevel >= 2)
+                                    span(class="material-symbols-outlined deleteLeft deleteMessage", data-messageId=message.id) delete    
 
-                else 
-                    div(class="message message-received")
-                        p= message.createdByUser 
-                        p= message.text
+                    else 
+                        .wrapper.received
+                            div(class="message message-received")
+                                p= message.createdByUser 
+                                p= message.text
+                                if(userLevel == 3)
+                                    span(class="material-symbols-outlined deleteRight deleteMessage", data-messageId=message.id) delete 
+
 
 
         if userLevel > 1                  
