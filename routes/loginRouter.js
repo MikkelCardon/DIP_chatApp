@@ -11,7 +11,7 @@ loginRouter.get("/", (request, response) => {
 loginRouter.post("/", async (request, response) => {
     let { username, password } = request.body
 
-    if (!username.lenght || !password) {
+    if (!username || !password) {
         response.sendStatus(404)
     }
 
