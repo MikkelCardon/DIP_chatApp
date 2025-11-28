@@ -21,7 +21,7 @@ html(lang="en")
                     if message.createdByUser == userId 
                         .wrapper.sent
                             div(class="message message-sent")
-                                p= message.createdByUser 
+                                p= message.createdByUser
                                 p= message.text
                                 if(userLevel >= 2)
                                     span(class="material-symbols-outlined deleteLeft deleteMessage", data-messageId=message.id) delete    
