@@ -17,7 +17,7 @@ router.get('/', async (request, response) => {
         {
             title: 'HomePage',
             userLevel: request.session.userLevel,
-            chats: chats
+            chats: chats,
         }
     )
 })

@@ -7,16 +7,19 @@ html(lang="en")
         title= title 
     body 
         include includes/navigationbar
+        
+        #homePageContainer
+            #chatHeader
+                h1#chatTitle Welcome to the Chat
 
-        h1 Welcome to the Chat 
-        span#errors 
+            #availableChats
+                #availableChatsLabel All chats 
+                each chat in chats
+                    .availableChatElement
+                        a(href=`/chats/${chat.id}`) #{chat.name}
+        
+            if userLevel === 3
+                #createChatSection
+                    input#chatNameInput(type="text", placeholder="What is your chat name?")
+                    button#createChatButton Create chat 
 
-        if userLevel === 3
-            #createChatSection 
-                input#chatNameInput(type="text", placeholder="Chatname?")
-                button#createChatButton create
-
-        #availableChats 
-            each chat in chats
-                .availableChatElement
-                    a(href=`/chats/${chat.id}`) #{chat.name}
