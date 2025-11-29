@@ -1,3 +1,5 @@
+import { loginUser } from "../api/userRequests.js"
+
 const loginButton = document.getElementById('loginButton')
 const usernameInput = document.getElementById('usernameInputElement')
 const passwordInput = document.getElementById('passwordInputElement')
@@ -18,7 +20,7 @@ loginButton.addEventListener('click', async () => {
     }
 
     try {
-        const response = await post(username, password)
+        const response = await loginUser(username, password)
 
         if (response.ok) {
             window.location.href = "/"
@@ -32,16 +34,6 @@ loginButton.addEventListener('click', async () => {
     }
 
 })
-
-
-async function post(username, password) {
-    const response = await fetch('/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: username, password: password })
-    })
-    return response
-}
 
 function wrongUsernameOrPassword () {
     alert('Incorrect username or password')

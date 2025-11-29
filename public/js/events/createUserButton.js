@@ -1,3 +1,4 @@
+import { createUser } from "../api/userRequests.js"
 
 const registerUserButton = document.getElementById('registerUserButton')
 
@@ -14,26 +15,9 @@ registerUserButton.addEventListener('click', async () => {
     const password = passwordInputElement.value
     const userLevel = parseInt(userLevelInputElement.value)
 
-    const response = await post (username, password, userLevel)
+    const response = await createUser (username, password, userLevel)
 
     if (response.ok) {
         window.location.href = `/accounts`
     }
 })
-
-async function post (username, password, userLevel) {
-    const response = await fetch('/accounts', {
-        method: 'POST',
-        body: JSON.stringify(
-            {
-                username: username,
-                password: password,
-                userLevel: userLevel
-            }
-        ),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    return response
-}

@@ -1,10 +1,6 @@
 /* IMPORT OF FUNCTIONS */
-import { updateChat } from './updateChat.js'
-import { deleteChat } from './deleteChat.js'
-import { sendMessage } from './sendMessage.js'
-import { deleteMessage } from './deleteMessage.js'
-
-
+import { updateChat, deleteChat } from './api/chatRequests.js'
+import { createMessage, deleteMessage } from './api/messageRequests.js'
 
 const chatHeader = document.getElementById('chatHeader');
 const chatTitle = document.getElementById('chatId');
@@ -64,7 +60,12 @@ if(sendButton){
         const createdByUser = sendButton.getAttribute('data-userId')
         const postedToChat = chatId.getAttribute('data-chatId')
         
-        const reponse = await sendMessage(createdByUser, postedToChat, text)
+        if (text.length <= 0) {
+            alert("Message can't be empty")
+            return
+        } 
+
+        const reponse = await createMessage(createdByUser, postedToChat, text)
 
         if(reponse.ok){
             window.location.href = `/chats/${postedToChat}`

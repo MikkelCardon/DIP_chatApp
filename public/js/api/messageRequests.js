@@ -1,11 +1,5 @@
-export async function sendMessage(createdByUser, postedToChat, text){
-    if (text.length <= 0) alert("Message can't be empty")
 
-    const response = await post(createdByUser, postedToChat, text)
-    return response
-}
-
-async function post (createdByUser, postedToChat, text) {
+export async function createMessage (createdByUser, postedToChat, text) {
     const response = await fetch(`/chats/${postedToChat}`, {
             method: 'POST',
             credentials: "include",
@@ -17,6 +11,15 @@ async function post (createdByUser, postedToChat, text) {
                     text: text 
                 }
             )
+        }
+    )
+    return response
+}
+
+export async function deleteMessage (postedToChat, messageId) {
+    const response = await fetch(`/chats/${postedToChat}/${messageId}`, {
+            method: 'DELETE',
+            credentials: "include"
         }
     )
     return response
