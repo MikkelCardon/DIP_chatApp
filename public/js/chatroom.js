@@ -58,20 +58,24 @@ if(deleteButton){
 
 if(sendButton){
     sendButton.addEventListener("click", async () => {
-        const messageInputElement = document.getElementById('msg')
-        const text = messageInputElement.value
-
-        const createdByUser = sendButton.getAttribute('data-userId')
-        const postedToChat = chatId.getAttribute('data-chatId')
-        
-        const reponse = await sendMessage(createdByUser, postedToChat, text)
-
-        if(reponse.ok){
-            window.location.href = `/chats/${postedToChat}`
-        }else {
-            //Error
-        }
+        sendMessageFunction()
     })
+}
+
+async function sendMessageFunction(){
+    const messageInputElement = document.getElementById('msg')
+    const text = messageInputElement.value
+
+    const createdByUser = sendButton.getAttribute('data-userId')
+    const postedToChat = chatId.getAttribute('data-chatId')
+    
+    const reponse = await sendMessage(createdByUser, postedToChat, text)
+
+    if(reponse.ok){
+        window.location.href = `/chats/${postedToChat}`
+    }else {
+        //Error
+    }
 }
 
 document.querySelectorAll(".deleteMessage").forEach(button => {
@@ -90,3 +94,11 @@ document.querySelectorAll(".deleteMessage").forEach(button => {
         }
     })
 })
+
+const inputElement = document.querySelector(".input-section")
+
+inputElement.addEventListener('keypress', async (e) => {
+    if (e.key === 'Enter') {
+        sendMessageFunction()
+    }
+});
