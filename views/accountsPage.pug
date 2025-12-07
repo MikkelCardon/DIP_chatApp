@@ -45,8 +45,15 @@ html(lang="en")
                         button#registerUserButton Register
 
         else 
+            h1 Your account
             .usersOverview 
-                label Username: #{accessedUser.username}
-                label Password: #{accessedUser.password}
-                label Created: #{accessedUser.dateOfCreation}
-                label User level: #{accessedUser.userLevel}
+                div
+                    .values
+                        h4 Username 
+                        p #{accessedUser.username}
+                    .values
+                        h4 Password 
+                        p #{accessedUser.password}
+                div
+                    h5 Created: #{accessedUser.dateOfCreation}
+                    h5 User level: #{accessedUser.userLevel}
