@@ -4,27 +4,46 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         link(rel="stylesheet", href="/css/navigationbar.css")
+        link(rel="stylesheet", href="/css/accountPage.css")
         script(src="/js/navigationbar.js" defer) 
         title= title 
     body 
         include includes/navigationbar 
-
-        h1 Account Overview
         
         if accessedUser.userLevel == 3
-            #registerUserSection
-                input(type="text", name="username", id="usernameInput", placeholder="Username")
-                input(type="password", name="password", id="passwordInput", placeholder="Password")
-                label(for="userLevel") User Level
-                    input(type="number", name="userLevel", id="userLevelInput", placeholder="1-3")
-                button#registerUserButton Register
+            .container
+                .accounts
+                    h1 Account Overview
+                    each user in users 
+                        .usersOverview 
+                            div
+                                .values
+                                    h4 Username 
+                                    p #{user.username}
+                                .values
+                                    h4 Password 
+                                    p #{user.password}
+                            div
+                                h5 Created: #{user.dateOfCreation}
+                                h5 User level: #{user.userLevel}
+                            button(data-userId= user.userId) Delete
+                .div 
+                    h1 Account Registration
+                    .registration-container
+                        h2 Register New Account
+                        .group 
+                            label(for="username") Username
+                            input(type="text", name="username", id="usernameInput", placeholder="Username")
+                        .group 
+                            label(for="password") Password
+                            input(type="password", name="password", id="passwordInput", placeholder="Password")
+                        .group
+                            label(for="userLevel") User Level
+                            input(type="number", name="userLevel", id="userLevelInput", placeholder="1-3")
+                            .helper-text Enter a level between 1 and 3
 
-            each user in users 
-                .usersOverview 
-                    label Username: #{user.username}
-                    label Password: #{user.password}
-                    label Created: #{user.dateOfCreation}
-                    label User level: #{user.userLevel}
+                        button#registerUserButton Register
+
         else 
             .usersOverview 
                 label Username: #{accessedUser.username}
