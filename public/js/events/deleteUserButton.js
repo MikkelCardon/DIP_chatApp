@@ -1,15 +1,15 @@
+import { deleteUser } from "../api/userRequest.js"
 
 const deleteUserButtons = document.querySelectorAll('.deleteUserButton')
 
 deleteUserButtons.forEach(deleteButton => {
     deleteButton.addEventListener('click', async () => {
         const userId = parseInt(deleteButton.getAttribute('data-userId'))
-
         if (!userId) {
             console.error('undefined userid')
         }
 
-        const response = await deleteRequest(userId)
+        const response = await deleteUser(userId)
 
         if (response.ok) {
             window.location.href = `/accounts`
@@ -20,13 +20,3 @@ deleteUserButtons.forEach(deleteButton => {
 })
 
 
-async function deleteRequest (userId) {
-    const response = await fetch('/accounts', {
-        method: 'DELETE',
-        body: JSON.stringify({userId: userId}),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    return response
-}
