@@ -1,6 +1,8 @@
 export async function sendMessage(createdByUser, postedToChat, text){
-    if (text.length <= 0) alert("Message can't be empty")
-
+    if (text.length <= 0) {
+        alert("Message can't be empty")
+        return
+    }
     const response = await post(createdByUser, postedToChat, text)
     return response
 }
