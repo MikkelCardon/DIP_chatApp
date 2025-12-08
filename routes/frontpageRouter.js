@@ -23,7 +23,7 @@ router.get('/', async (request, response) => {
 })
 
 router.post('/createchat', async (request, response) => {
-    const name = request.body
+    const { name } = request.body
     const createdByUser = parseInt(request.session.userId)
 
     const chat = createChat(name, createdByUser)
