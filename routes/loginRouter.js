@@ -24,8 +24,6 @@ loginRouter.post("/", async (request, response) => {
         request.session.userLevel = user.userLevel 
         request.session.userId = user.id
 
-        console.log(request.session);
-        
         response.sendStatus(200)
     } else {
         response.sendStatus(404)

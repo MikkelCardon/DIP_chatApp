@@ -1,8 +1,6 @@
 import express from 'express';
 import session from 'express-session';
 import morgan from 'morgan';
-import path from 'path';
-import { fileURLToPath } from 'url';
 
 import loginRouter from "./routes/loginRouter.js"
 import frontpageRouter from "./routes/frontpageRouter.js"
@@ -26,9 +24,6 @@ app.use(session({
     saveUninitialized: false,
 }));
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 app.use("/login", loginRouter)
 
 const requireAuth = (request, response, next) => {
@@ -51,8 +46,6 @@ app.use('/chats', chatRoomRouter)
 //API
 app.use("/api", (request, response, next) => {
     let userLevel = request.session.userLevel
-
-    console.log("userLevel: ", userLevel);
     
     if(userLevel < 3){
         response.status(401).send("[ERROR]: UserLevel is under level 3")

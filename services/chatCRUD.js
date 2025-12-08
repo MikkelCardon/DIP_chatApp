@@ -3,7 +3,6 @@ import Message from '../models/message.js'
 import { loadChats } from './fileReaders.js'
 
 export function createChat (name, createdByUser) {
-    console.log(name, createdByUser);
     const chat = new Chat(null, name, new Date().toLocaleDateString('en-GB'), createdByUser, [])
     return chat
 }

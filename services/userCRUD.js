@@ -13,7 +13,6 @@ export async function deleteUser (userId) {
     if (!user) {
         throw new Error('user.find() returned undefined')
     }
-    console.log(`found user: ${user.id}`)
     const index = users.indexOf(user)
 
     users.splice(index, 1)
