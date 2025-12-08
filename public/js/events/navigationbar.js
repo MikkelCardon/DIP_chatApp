@@ -4,18 +4,18 @@ const navigationButtonsList = document.querySelectorAll("#navigationbar > .navig
 navigationButtonsList.forEach(async navigationButton => {
     switch (navigationButton.id) {
         case "homeNavigationButton":
-            navigationButton.addEventListener('click', () => nagivateToPage('/'))
+            navigationButton.addEventListener('click', () => navigateToPage('/'))
             break
         case "accountNavigatioButton":
-            navigationButton.addEventListener('click', () => nagivateToPage('/accounts'))
+            navigationButton.addEventListener('click', () => navigateToPage('/accounts'))
             break
         case "logoutNavigationButton":
-            navigationButton.addEventListener('click', () => nagivateToPage('/logout'))
+            navigationButton.addEventListener('click', () => navigateToPage('/logout'))
         default:
             break
     }
 })
 
-function nagivateToPage(url) {
+function navigateToPage(url) {
     window.location.href = url
 }
