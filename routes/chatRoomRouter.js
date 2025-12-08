@@ -8,7 +8,7 @@ const router = express.Router()
 router.get('/:id', async (request, response) => {
     const chatId = parseInt(request.params.id)
     const chat = await getChat(chatId)
-    
+    console.log(chat.name);
     if (!chat) {
         console.error(`ChatId ${chatId} doesn't exist`)
         response.sendStatus(401)
