@@ -4,8 +4,11 @@ const createChatButton = document.getElementById('createChatButton')
 
 createChatButton.addEventListener('click', async () => {
     const chatNameInput = document.getElementById('chatNameInput')
-
     const chatName = chatNameInput.value
+
+    if (chatName.length <= 0) {
+        return
+    }
     
     const response = await createChat(chatName)
     const data = await response.json()
@@ -13,4 +16,3 @@ createChatButton.addEventListener('click', async () => {
 
     window.location.href = `/chats/${chatId}`
 })
-
