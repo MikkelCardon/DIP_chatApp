@@ -24,11 +24,11 @@ html(lang="en")
                                     p #{user.username}
                                 .values
                                     h4 Password 
-                                    p #{user.password}
+                                    p #{user.password}  
                             div
                                 h5 Created: #{user.dateOfCreation}
                                 h5 User level: #{user.userLevel}
-                            button(data-userId= user.userId) Delete
+                            button(class="deleteUserButton",data-userId= user.id) Delete
                 .div 
                     h1 Account Registration
                     .registration-container

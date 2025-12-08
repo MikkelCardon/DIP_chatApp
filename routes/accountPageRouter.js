@@ -35,9 +35,17 @@ router.post('/', async (request, response) => {
 
 router.delete('/', async (request, response) => {
     const { userId } = request.body
+    const parsedUserId = parseInt(userId)
+
+    const sessionUserId = parseInt(request.session.userId)
+
+    if (parsedUserId === sessionUserId) {
+        response.sendStatus(401)
+        return
+    }
 
     try {
-        const updatedUsers = await deleteUser(parseInt(userId))
+        const updatedUsers = await deleteUser(parsedUserId)
         await updateUsers(updatedUsers)
     } catch (error) {
         console.error(`router.delete('/',...): ${error.message}`)
@@ -45,6 +53,7 @@ router.delete('/', async (request, response) => {
     }
 
     response.sendStatus(201)
+
 })
 
 export default router

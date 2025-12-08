@@ -13,6 +13,8 @@ deleteUserButtons.forEach(deleteButton => {
 
         if (response.ok) {
             window.location.href = `/accounts`
+        } else{
+            alert("Can't do that!")
         }
     })
 })
