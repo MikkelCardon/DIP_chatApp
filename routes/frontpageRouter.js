@@ -23,13 +23,10 @@ router.get('/', async (request, response) => {
 })
 
 router.post('/createchat', async (request, response) => {
-    const { name } = request.body
+    const name = request.body
     const createdByUser = parseInt(request.session.userId)
-    console.log("Created by user (post): ", createdByUser);
 
     const chat = createChat(name, createdByUser)
-    console.log(chat);
-
     try {
         const chats = await loadChats()
         chats.push(chat)

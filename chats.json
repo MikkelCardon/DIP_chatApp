@@ -1,1 +1,19 @@
-{"chats":[]}
+{
+    "chats": [
+        {
+            "id": 1,
+            "name": "Rasmus' chat",
+            "dateOfCreation": "01/12/2025",
+            "createdByUser": 1,
+            "messages": [
+                {
+                    "id": 1,
+                    "createdByUser": "1",
+                    "dateOfCreation": 1764603625437,
+                    "postedToChat": "1",
+                    "text": "Hej"
+                }
+            ]
+        }
+    ]
+}
