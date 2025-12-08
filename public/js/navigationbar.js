@@ -19,6 +19,5 @@ navigationButtonsList.forEach(async listElement => {
 })
 
 function nagivateToPage(url) {
-    console.log('button clicked')
     window.location.href = url
 }

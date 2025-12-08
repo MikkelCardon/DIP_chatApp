@@ -8,7 +8,6 @@ createChatButton.addEventListener('click', async () => {
     const response = await post(chatName)
     const data = await response.json()
     const chatId = parseInt(data.chatId)
-    console.log(`chatId: ${chatId}`)
 
     window.location.href = `/chats/${chatId}`
 })

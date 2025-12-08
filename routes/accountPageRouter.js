@@ -35,7 +35,6 @@ router.post('/', async (request, response) => {
 
 router.delete('/', async (request, response) => {
     const { userId } = request.body
-    console.log('================================userId:' + userId + '=========================================');
 
     try {
         const updatedUsers = await deleteUser(parseInt(userId))
