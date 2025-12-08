@@ -1,9 +1,7 @@
 
-const navigationButtonsList = document.querySelectorAll("#navigationButtonsList > li")
+const navigationButtonsList = document.querySelectorAll("#navigationbar > .navigationButton")
 
-navigationButtonsList.forEach(async listElement => {
-    const navigationButton = listElement.firstElementChild
-
+navigationButtonsList.forEach(async navigationButton => {
     switch (navigationButton.id) {
         case "homeNavigationButton":
             navigationButton.addEventListener('click', () => nagivateToPage('/'))
