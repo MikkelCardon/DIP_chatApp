@@ -15,6 +15,13 @@ registerUserButton.addEventListener('click', async () => {
     const password = passwordInputElement.value
     const userLevel = parseInt(userLevelInputElement.value)
 
+    if (isInputEmpty(username, password)) {
+        alert('Please fill out all required fields')
+    } else if (isUserLevelInvalid(userLevel)) {
+        alert('Please provide a user level between 1 and 3')
+        return
+    }
+
     const response = await createUser (username, password, userLevel)
 
     if (response.ok) {
@@ -22,3 +29,10 @@ registerUserButton.addEventListener('click', async () => {
     }
 })
 
+function isInputEmpty (username, password) {
+    return username.length <= 0 || password.length <= 0
+}
+
+function isUserLevelInvalid (userLevel) {
+    return userLevel < 1 || userLevel > 3
+}
