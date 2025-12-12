@@ -2,6 +2,7 @@ import express from 'express'
 import { getChat } from '../services/fileReaders.js'
 import { updateChats } from '../services/fileWriters.js'
 import { createMessage, addMessageToChat, removeChat, removeMessageFromChat, updateChatName } from '../services/chatCRUD.js' 
+import { getUserMapping } from '../services/userMapping.js'
 
 const router = express.Router()
 
@@ -14,6 +15,9 @@ router.get('/:id', async (request, response) => {
         response.sendStatus(401)
     }
 
+    const userMappings = await getUserMapping()
+    
+
     response.render('chatRoomPage', {
         title: `chats/${chat.name}`,
         chatName: chat.name,
@@ -21,7 +25,8 @@ router.get('/:id', async (request, response) => {
         messages: chat.messages,
         userId: parseInt(request.session.userId),
         userLevel: parseInt(request.session.userLevel),
-        chatId: parseInt(chat.id)
+        chatId: parseInt(chat.id),
+        userMappings: userMappings
     })
 })
 

@@ -27,7 +27,7 @@ html(lang="en")
                     if message.createdByUser == userId 
                         .wrapper.sent
                             div(class="message message-sent")
-                                p= message.createdByUser
+                                h5= userMappings[message.createdByUser]
                                 p= message.text
                                 if(userLevel >= 2)
                                     span(class="material-symbols-outlined deleteLeft deleteMessage", data-messageId=message.id) delete    
@@ -35,7 +35,7 @@ html(lang="en")
                     else 
                         .wrapper.received
                             div(class="message message-received")
-                                p= message.createdByUser 
+                                h5= userMappings[message.createdByUser]   
                                 p= message.text
                                 if(userLevel == 3)
                                     span(class="material-symbols-outlined deleteRight deleteMessage", data-messageId=message.id) delete 

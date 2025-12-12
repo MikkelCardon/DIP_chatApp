@@ -18,12 +18,17 @@
     align-content: space-between;
     display: flex;
     gap: 25px;
-    width: 500px;
+    width: 600px;
     background-color: lightblue;
+}
+
+.usersOverview div:first-child {
+    min-width: 250px;
 }
 
 .usersOverview div {
     margin-right: 20px;
+    text-align: left;
 }
 
 .usersOverview h5 {
@@ -41,7 +46,6 @@
 
 .values{
     display: flex;
-    justify-content: space-between;
     align-items: center;
     gap: 10px;
     height: 30px;
