@@ -5,9 +5,9 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         link(rel="stylesheet", href="/css/navigationbar.css")
         link(rel="stylesheet", href="/css/accountPage.css")
-        script(src="/js/navigationbar.js" defer) 
-        script(src="/js/createUser.js" defer) 
-        script(src="/js/deleteUser.js" defer) 
+        script(type="module", src="/js/events/createUserButton.js" defer) 
+        script(type="module", src="/js/events/deleteUserButton.js" defer) 
+        script(type="module", src="/js/events/navigationbar.js" defer) 
         title= title 
     body 
         include includes/navigationbar 
