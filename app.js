@@ -27,7 +27,6 @@ app.use(session({
 app.use("/login", loginRouter)
 
 const requireAuth = (request, response, next) => {
-  console.log(request.session.username);
   if (request.session.username) {
     next();
   } else {
